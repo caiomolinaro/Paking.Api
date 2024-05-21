@@ -1,7 +1,6 @@
 ﻿using Api.Features.Establishment;
 using Api.Features.Vehicle;
 using Api.Infrastructure;
-using Api.Repositories;
 
 namespace Api.DependencyInjection;
 

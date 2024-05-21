@@ -1,7 +1,6 @@
-﻿using Api.Features.Establishment;
-using Api.Infrastructure;
+﻿using Api.Infrastructure;
 
-namespace Api.Repositories;
+namespace Api.Features.Establishment;
 
 public class EstablishmentData(ParkingDbContext context) : IEstablishmentData
 {

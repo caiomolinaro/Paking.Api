@@ -1,58 +1,85 @@
-﻿using Api.Features.Establishment;
+﻿namespace Api.Features.Establishment;
 
-namespace Api.Endpoints;
-
-public static class EstablishmentEndpoint
+public class EstablishmentEndpoint : ICarterModule
 {
-    public static void MapEstablishmentEndpoint(this WebApplication app)
+    public void AddRoutes(IEndpointRouteBuilder app)
     {
-        app.MapGet("GetEstablishmentById/{id:guid}", async ([FromRoute] Guid id, IEstablishmentData establishmentData, CancellationToken cancellationToken) =>
+        var group = app.MapGroup("/establishments")
+            .WithTags("Establishments");
+
+        group.MapGet(string.Empty, GetAllEstablishments);
+        group.MapGet("/{id:guid}", GetEstablishmentById);
+        group.MapPost(string.Empty, CreateEstablishment);
+        group.MapPut(string.Empty, UpdateEstablishment);
+        group.MapDelete("/{id:guid}", DeleteEstablishment);
+    }
+
+    public static async Task<IResult> GetAllEstablishments(IEstablishmentData establishmentData, CancellationToken cancellationToken)
+    {
+        var establishments = await establishmentData.GetAllEstablishmentAsync(cancellationToken);
+        if (establishments is null)
         {
-            var establishmentById = await establishmentData.GetEstablishmentByIdAsync(id, cancellationToken);
-            if (establishmentById is null)
-            {
-                return Results.NotFound();
-            }
-            return Results.Ok(establishmentById);
-        }).WithTags(["Establishment"]);
+            return Results.NotFound();
+        }
 
-        app.MapGet("GetAllEstablishments", async (IEstablishmentData establishmentData, CancellationToken cancellationToken) =>
+        return Results.Ok(establishments);
+    }
+
+    public static async Task<IResult> GetEstablishmentById([FromRoute] Guid id, IEstablishmentData establishmentData, CancellationToken cancellationToken)
+    {
+        var establishmentById = await establishmentData.GetEstablishmentByIdAsync(id, cancellationToken);
+
+        if (establishmentById is null)
         {
-            var establishments = await establishmentData.GetAllEstablishmentAsync(cancellationToken);
-            if (establishments is null)
-            {
-                return Results.NotFound();
-            }
-            return Results.Ok(establishments);
-        }).WithTags(["Establishment"]);
+            return Results.NotFound();
+        }
 
-        app.MapPost("/CreateEstablishment", async (IEstablishmentData establishmentData, EstablishmentEntity establishmentEntity, CancellationToken cancellationToken) =>
+        return Results.Ok(establishmentById);
+    }
+
+    public static async Task<IResult> CreateEstablishment(IEstablishmentData establishmentData, IValidator<EstablishmentEntity> validator, EstablishmentEntity establishmentEntity, CancellationToken cancellationToken)
+    {
+        var validationResult = await validator.ValidateAsync(establishmentEntity, cancellationToken);
+
+        if (!validationResult.IsValid)
         {
-            await establishmentData.CreateEstablishmentAsync(establishmentEntity, cancellationToken);
-            return Results.Created("Establishment Created With Success", establishmentEntity);
-        }).WithTags(["Establishment"]);
+            return Results.BadRequest(validationResult.Errors);
+        }
 
-        app.MapPut("/UpdateEstablishment", async (IEstablishmentData establishmentData, EstablishmentEntity establishmentEntity, CancellationToken cancellationToken) =>
+        await establishmentData.CreateEstablishmentAsync(establishmentEntity, cancellationToken);
+
+        return Results.Created($"/establishments/{establishmentEntity.Id}", establishmentEntity);
+    }
+
+    public static async Task<IResult> UpdateEstablishment(IEstablishmentData establishmentData, EstablishmentEntity establishmentEntity, IValidator<EstablishmentEntity> validator, CancellationToken cancellationToken)
+    {
+        var validationResult = await validator.ValidateAsync(establishmentEntity, cancellationToken);
+
+        if (!validationResult.IsValid)
         {
-            if (establishmentEntity is null)
-            {
-                return Results.NotFound();
-            }
+            return Results.BadRequest(validationResult.Errors);
+        }
 
-            await establishmentData.UpdateEstablishmentAsync(establishmentEntity, cancellationToken);
-            return Results.Ok(establishmentEntity);
-        }).WithTags(["Establishment"]);
-
-        app.MapDelete("DeleteEstablishment/{id:guid}", async ([FromRoute] Guid id, IEstablishmentData establishmentData, CancellationToken cancellationToken) =>
+        if (establishmentEntity is null)
         {
-            var entityById = await establishmentData.GetEstablishmentByIdAsync(id, cancellationToken);
-            if (entityById is null)
-            {
-                return Results.NotFound();
-            }
+            return Results.NotFound();
+        }
 
-            await establishmentData.DeleteEstablishmentAsync(entityById, cancellationToken);
-            return Results.NoContent();
-        }).WithTags(["Establishment"]);
+        await establishmentData.UpdateEstablishmentAsync(establishmentEntity, cancellationToken);
+
+        return Results.Ok(establishmentEntity);
+    }
+
+    public static async Task<IResult> DeleteEstablishment([FromRoute] Guid id, IEstablishmentData establishmentData, CancellationToken cancellationToken)
+    {
+        var entityById = await establishmentData.GetEstablishmentByIdAsync(id, cancellationToken);
+        if (entityById is null)
+        {
+            return Results.NotFound();
+        }
+
+        await establishmentData.DeleteEstablishmentAsync(entityById, cancellationToken);
+
+        return Results.NoContent();
     }
 }

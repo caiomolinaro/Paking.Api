@@ -1,6 +1,4 @@
 using Api.DependencyInjection;
-using Api.Endpoints;
-using Api.Features.Vehicle;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDependencyInjection(builder.Configuration);
+builder.Services.AddCarter();
+builder.Services.AddValidatorsFromAssembly(typeof(Program).Assembly);
 
 var app = builder.Build();
 
@@ -20,9 +20,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
-app.MapEstablishmentEndpoint();
-app.MapVehicleEndpoint();
 app.UseStatusCodePages();
+app.MapCarter();
 
 app.Run();
