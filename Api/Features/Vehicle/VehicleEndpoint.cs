@@ -16,8 +16,7 @@ public static class VehicleEndpoint
             .WithDescription("Return all vehicles")
             .WithTags(["Vehicle"]);
 
-        app.MapPost("/CreateVehicle", async (IVehicleData vehicleData, VehicleEntity vehicleEntity,
-                                              CancellationToken cancellationToken) =>
+        app.MapPost("/CreateVehicle", async (IVehicleData vehicleData, VehicleEntity vehicleEntity, CancellationToken cancellationToken) =>
         {
             await vehicleData.CreateVehicleAsync(vehicleEntity, cancellationToken);
             return Results.Created("Vehicle Created With Success", vehicleEntity);

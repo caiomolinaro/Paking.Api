@@ -21,12 +21,12 @@ public class VehicleData(ParkingDbContext context) : IVehicleData
         return vehicle;
     }
 
-    public Task UpdateVehicleAsync(VehicleEntity vehicle, CancellationToken cancellationToken)
+    public Task<VehicleEntity> UpdateVehicleAsync(VehicleEntity vehicle, CancellationToken cancellationToken)
     {
         throw new NotImplementedException();
     }
 
-    public Task DeleteVehicleAsync(Guid id, CancellationToken cancellationToken)
+    public Task<VehicleEntity> DeleteVehicleAsync(VehicleEntity vehicle, CancellationToken cancellationToken)
     {
         throw new NotImplementedException();
     }

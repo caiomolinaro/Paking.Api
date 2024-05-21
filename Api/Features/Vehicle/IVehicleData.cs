@@ -8,7 +8,7 @@ public interface IVehicleData
 
     Task<VehicleEntity> CreateVehicleAsync(VehicleEntity vehicle, CancellationToken cancellationToken);
 
-    Task UpdateVehicleAsync(VehicleEntity vehicle, CancellationToken cancellationToken);
+    Task<VehicleEntity> UpdateVehicleAsync(VehicleEntity vehicle, CancellationToken cancellationToken);
 
-    Task DeleteVehicleAsync(Guid id, CancellationToken cancellationToken);
+    Task<VehicleEntity> DeleteVehicleAsync(VehicleEntity vehicle, CancellationToken cancellationToken);
 }
