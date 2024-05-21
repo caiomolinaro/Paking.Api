@@ -2,13 +2,11 @@
 
 namespace Api.Features.Vehicle;
 
-public class VehicleData : IVehicleData
+public class VehicleData(ParkingDbContext _context) : IVehicleData
 {
-    private readonly ParkingDbContext _context;
-
-    public Task<IEnumerable<VehicleEntity>> GetAllVehiclesAsync(VehicleEntity vehicle, CancellationToken cancellationToken)
+    public async Task<IEnumerable<VehicleEntity>> GetAllVehiclesAsync(CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        return await _context.Vehicle.ToListAsync(cancellationToken);
     }
 
     public Task<VehicleEntity> GetVehicleByIdAsync(Guid id, CancellationToken cancellationToken)
@@ -16,9 +14,11 @@ public class VehicleData : IVehicleData
         throw new NotImplementedException();
     }
 
-    public Task<VehicleEntity> CreateVehicleAsync(VehicleEntity vehicle, CancellationToken cancellationToken)
+    public async Task<VehicleEntity> CreateVehicleAsync(VehicleEntity vehicle, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        _context.AddAsync(vehicle, cancellationToken);
+        await _context.SaveChangesAsync();
+        return vehicle;
     }
 
     public Task UpdateVehicleAsync(VehicleEntity vehicle, CancellationToken cancellationToken)

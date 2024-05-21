@@ -3,13 +3,11 @@ using Api.Infrastructure;
 
 namespace Api.Repositories;
 
-public class EstablishmentData : IEstablishmentData
+public class EstablishmentData(ParkingDbContext _context) : IEstablishmentData
 {
-    private readonly ParkingDbContext _context;
-
-    public Task<IEnumerable<EstablishmentEntity>> GetAllEstablishmentAsync(EstablishmentEntity establishment, CancellationToken cancellationToken)
+    public async Task<IEnumerable<EstablishmentEntity>> GetAllEstablishmentAsync(CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        return await _context.Establishment.ToListAsync(cancellationToken);
     }
 
     public Task<EstablishmentEntity> GetEstablishmentByIdAsync(Guid id, CancellationToken cancellationToken)
@@ -17,9 +15,11 @@ public class EstablishmentData : IEstablishmentData
         throw new NotImplementedException();
     }
 
-    public Task<EstablishmentEntity> CreateEstablishmentAsync(EstablishmentEntity establishment, CancellationToken cancellationToken)
+    public async Task<EstablishmentEntity> CreateEstablishmentAsync(EstablishmentEntity establishment, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        _context.AddAsync(establishment, cancellationToken);
+        await _context.SaveChangesAsync();
+        return establishment;
     }
 
     public Task UpdateEstablishmentAsync(EstablishmentEntity establishment, CancellationToken cancellationToken)

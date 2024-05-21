@@ -2,7 +2,7 @@
 
 public interface IEstablishmentData
 {
-    Task<IEnumerable<EstablishmentEntity>> GetAllEstablishmentAsync(EstablishmentEntity establishment, CancellationToken cancellationToken);
+    Task<IEnumerable<EstablishmentEntity>> GetAllEstablishmentAsync(CancellationToken cancellationToken);
 
     Task<EstablishmentEntity> GetEstablishmentByIdAsync(Guid id, CancellationToken cancellationToken);
 

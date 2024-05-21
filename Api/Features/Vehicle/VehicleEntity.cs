@@ -19,7 +19,7 @@ public class VehicleEntity
     [Required(ErrorMessage = "Field cannot be empty")]
     public TypeEnum Type { get; set; }
 
-    public enum BrandEnum
+    public enum BrandEnum : int
     {
         Toyota,
         Ford,
@@ -30,7 +30,7 @@ public class VehicleEntity
         Chevrolet
     }
 
-    public enum ColorEnum
+    public enum ColorEnum : int
     {
         Red,
         Blue,
@@ -44,7 +44,7 @@ public class VehicleEntity
         Black,
     }
 
-    public enum TypeEnum
+    public enum TypeEnum : int
     {
         Car,
         Motorcycle

@@ -5,6 +5,10 @@ public class EstablishmentEntity
     public Guid Id { get; set; }
 
     [Required(ErrorMessage = "Field cannot be empty")]
+    public string? Name { get; set; }
+
+    [StringLength(14, MinimumLength = 4, ErrorMessage = "Phone number must be 14 digits")]
+    [Required(ErrorMessage = "Field cannot be empty")]
     public string? CNPJ { get; set; }
 
     [Required(ErrorMessage = "Field cannot be empty")]
