@@ -1,6 +1,5 @@
 ﻿using Api.Features.Establishment;
 using Api.Features.Vehicle;
-using Microsoft.EntityFrameworkCore;
 
 namespace Api.Infrastructure;
 
