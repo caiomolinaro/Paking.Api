@@ -3,32 +3,36 @@ using Api.Infrastructure;
 
 namespace Api.Repositories;
 
-public class EstablishmentData(ParkingDbContext _context) : IEstablishmentData
+public class EstablishmentData(ParkingDbContext context) : IEstablishmentData
 {
     public async Task<IEnumerable<EstablishmentEntity>> GetAllEstablishmentAsync(CancellationToken cancellationToken)
     {
-        return await _context.Establishment.ToListAsync(cancellationToken);
+        return await context.Establishment.ToListAsync(cancellationToken);
     }
 
-    public Task<EstablishmentEntity> GetEstablishmentByIdAsync(Guid id, CancellationToken cancellationToken)
+    public async Task<EstablishmentEntity> GetEstablishmentByIdAsync(Guid id, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        return await context.Establishment.FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
     }
 
     public async Task<EstablishmentEntity> CreateEstablishmentAsync(EstablishmentEntity establishment, CancellationToken cancellationToken)
     {
-        _context.AddAsync(establishment, cancellationToken);
-        await _context.SaveChangesAsync();
+        context.AddAsync(establishment, cancellationToken);
+        await context.SaveChangesAsync(cancellationToken);
         return establishment;
     }
 
-    public Task UpdateEstablishmentAsync(EstablishmentEntity establishment, CancellationToken cancellationToken)
+    public async Task<EstablishmentEntity> UpdateEstablishmentAsync(EstablishmentEntity establishment, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        context.Update(establishment);
+        await context.SaveChangesAsync(cancellationToken);
+        return establishment;
     }
 
-    public Task DeleteEstablishmentAsync(Guid id, CancellationToken cancellationToken)
+    public async Task<EstablishmentEntity> DeleteEstablishmentAsync(EstablishmentEntity establishment, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        context.Remove(establishment);
+        await context.SaveChangesAsync(cancellationToken);
+        return establishment;
     }
 }

@@ -2,11 +2,11 @@
 
 namespace Api.Features.Vehicle;
 
-public class VehicleData(ParkingDbContext _context) : IVehicleData
+public class VehicleData(ParkingDbContext context) : IVehicleData
 {
     public async Task<IEnumerable<VehicleEntity>> GetAllVehiclesAsync(CancellationToken cancellationToken)
     {
-        return await _context.Vehicle.ToListAsync(cancellationToken);
+        return await context.Vehicle.ToListAsync(cancellationToken);
     }
 
     public Task<VehicleEntity> GetVehicleByIdAsync(Guid id, CancellationToken cancellationToken)
@@ -16,8 +16,8 @@ public class VehicleData(ParkingDbContext _context) : IVehicleData
 
     public async Task<VehicleEntity> CreateVehicleAsync(VehicleEntity vehicle, CancellationToken cancellationToken)
     {
-        _context.AddAsync(vehicle, cancellationToken);
-        await _context.SaveChangesAsync();
+        context.AddAsync(vehicle, cancellationToken);
+        await context.SaveChangesAsync();
         return vehicle;
     }
 

@@ -8,7 +8,7 @@ public interface IEstablishmentData
 
     Task<EstablishmentEntity> CreateEstablishmentAsync(EstablishmentEntity establishment, CancellationToken cancellationToken);
 
-    Task UpdateEstablishmentAsync(EstablishmentEntity establishment, CancellationToken cancellationToken);
+    Task<EstablishmentEntity> UpdateEstablishmentAsync(EstablishmentEntity establishment, CancellationToken cancellationToken);
 
-    Task DeleteEstablishmentAsync(Guid id, CancellationToken cancellationToken);
+    Task<EstablishmentEntity> DeleteEstablishmentAsync(EstablishmentEntity establishment, CancellationToken cancellationToken);
 }
