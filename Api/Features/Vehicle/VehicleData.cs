@@ -9,9 +9,9 @@ public class VehicleData(ParkingDbContext context) : IVehicleData
         return await context.Vehicle.ToListAsync(cancellationToken);
     }
 
-    public Task<VehicleEntity> GetVehicleByIdAsync(Guid id, CancellationToken cancellationToken)
+    public async Task<VehicleEntity> GetVehicleByIdAsync(Guid id, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        return await context.Vehicle.FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
     }
 
     public async Task<VehicleEntity> CreateVehicleAsync(VehicleEntity vehicle, CancellationToken cancellationToken)
@@ -21,13 +21,17 @@ public class VehicleData(ParkingDbContext context) : IVehicleData
         return vehicle;
     }
 
-    public Task<VehicleEntity> UpdateVehicleAsync(VehicleEntity vehicle, CancellationToken cancellationToken)
+    public async Task<VehicleEntity> UpdateVehicleAsync(VehicleEntity vehicle, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        context.Update(vehicle);
+        await context.SaveChangesAsync(cancellationToken);
+        return vehicle;
     }
 
-    public Task<VehicleEntity> DeleteVehicleAsync(VehicleEntity vehicle, CancellationToken cancellationToken)
+    public async Task<VehicleEntity> DeleteVehicleAsync(VehicleEntity vehicle, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        context.Remove(vehicle);
+        await context.SaveChangesAsync(cancellationToken);
+        return vehicle;
     }
 }
