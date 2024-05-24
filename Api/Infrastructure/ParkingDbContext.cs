@@ -1,9 +1,10 @@
 ﻿using Api.Features.Establishment;
 using Api.Features.Vehicle;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace Api.Infrastructure;
 
-public class ParkingDbContext : DbContext
+public class ParkingDbContext : IdentityDbContext<ApplicationUser>
 {
     public ParkingDbContext(DbContextOptions<ParkingDbContext> options)
         : base(options)

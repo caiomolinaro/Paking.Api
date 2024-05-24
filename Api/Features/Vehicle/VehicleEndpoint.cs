@@ -1,6 +1,4 @@
-﻿using Api.Features.Establishment;
-
-namespace Api.Features.Vehicle;
+﻿namespace Api.Features.Vehicle;
 
 public class VehicleEndpoint : ICarterModule
 {
@@ -16,6 +14,7 @@ public class VehicleEndpoint : ICarterModule
         group.MapDelete("/{id:guid}", DeleteVehicle);
     }
 
+    [Authorize]
     public static async Task<IResult> GetAllVehicles(IVehicleData vehicleData, CancellationToken cancellationToken)
     {
         var vehicles = await vehicleData.GetAllVehiclesAsync(cancellationToken);
@@ -27,6 +26,7 @@ public class VehicleEndpoint : ICarterModule
         return Results.Ok(vehicles);
     }
 
+    [Authorize]
     public static async Task<IResult> GetVehicleById([FromRoute] Guid id, IVehicleData vehicleData, CancellationToken cancellationToken)
     {
         var vehicleById = await vehicleData.GetVehicleByIdAsync(id, cancellationToken);
@@ -39,6 +39,7 @@ public class VehicleEndpoint : ICarterModule
         return Results.Ok(vehicleById);
     }
 
+    [Authorize]
     public static async Task<IResult> CreateVehicle(IVehicleData vehicleData, VehicleEntity vehicleEntity, IValidator<VehicleEntity> validator, CancellationToken cancellationToken)
     {
         var validationResult = await validator.ValidateAsync(vehicleEntity, cancellationToken);
@@ -53,6 +54,7 @@ public class VehicleEndpoint : ICarterModule
         return Results.Created($"/vehicles/{vehicleEntity.Id}", vehicleEntity);
     }
 
+    [Authorize]
     public static async Task<IResult> UpdateVehicle(IVehicleData vehicleData, VehicleEntity vehicleEntity, IValidator<VehicleEntity> validator, CancellationToken cancellationToken)
     {
         var validationResult = await validator.ValidateAsync(vehicleEntity, cancellationToken);
@@ -72,6 +74,7 @@ public class VehicleEndpoint : ICarterModule
         return Results.Ok(vehicleEntity);
     }
 
+    [Authorize]
     public static async Task<IResult> DeleteVehicle([FromRoute] Guid id, IVehicleData vehicleData, CancellationToken cancellationToken)
     {
         var entityById = await vehicleData.GetVehicleByIdAsync(id, cancellationToken);

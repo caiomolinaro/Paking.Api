@@ -14,6 +14,7 @@ public class EstablishmentEndpoint : ICarterModule
         group.MapDelete("/{id:guid}", DeleteEstablishment);
     }
 
+    [Authorize]
     public static async Task<IResult> GetAllEstablishments(IEstablishmentData establishmentData, CancellationToken cancellationToken)
     {
         var establishments = await establishmentData.GetAllEstablishmentAsync(cancellationToken);
@@ -25,6 +26,7 @@ public class EstablishmentEndpoint : ICarterModule
         return Results.Ok(establishments);
     }
 
+    [Authorize]
     public static async Task<IResult> GetEstablishmentById([FromRoute] Guid id, IEstablishmentData establishmentData, CancellationToken cancellationToken)
     {
         var establishmentById = await establishmentData.GetEstablishmentByIdAsync(id, cancellationToken);
@@ -37,6 +39,7 @@ public class EstablishmentEndpoint : ICarterModule
         return Results.Ok(establishmentById);
     }
 
+    [Authorize]
     public static async Task<IResult> CreateEstablishment(IEstablishmentData establishmentData, IValidator<EstablishmentEntity> validator, EstablishmentEntity establishmentEntity, CancellationToken cancellationToken)
     {
         var validationResult = await validator.ValidateAsync(establishmentEntity, cancellationToken);
@@ -51,6 +54,7 @@ public class EstablishmentEndpoint : ICarterModule
         return Results.Created($"/establishments/{establishmentEntity.Id}", establishmentEntity);
     }
 
+    [Authorize]
     public static async Task<IResult> UpdateEstablishment(IEstablishmentData establishmentData, EstablishmentEntity establishmentEntity, IValidator<EstablishmentEntity> validator, CancellationToken cancellationToken)
     {
         var validationResult = await validator.ValidateAsync(establishmentEntity, cancellationToken);
@@ -70,6 +74,7 @@ public class EstablishmentEndpoint : ICarterModule
         return Results.Ok(establishmentEntity);
     }
 
+    [Authorize]
     public static async Task<IResult> DeleteEstablishment([FromRoute] Guid id, IEstablishmentData establishmentData, CancellationToken cancellationToken)
     {
         var entityById = await establishmentData.GetEstablishmentByIdAsync(id, cancellationToken);
