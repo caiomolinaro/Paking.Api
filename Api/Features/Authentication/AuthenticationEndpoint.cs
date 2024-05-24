@@ -67,13 +67,12 @@ public class AuthenticationEndpoint(IConfiguration configuration) : ICarterModul
 
         var credentials = new SigningCredentials(privateKey, SecurityAlgorithms.HmacSha256);
 
-        var expiration = DateTime.UtcNow.AddMinutes(10);
+        var expiration = DateTime.UtcNow.AddMinutes(60);
 
         JwtSecurityToken token = new JwtSecurityToken(
             issuer: configuration["Jwt:Issuer"],
             audience: configuration["Jwt:Audience"],
             claims: claims,
-            expires: expiration,
             signingCredentials: credentials
             );
 

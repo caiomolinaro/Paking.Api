@@ -8,10 +8,12 @@ This project is my solution to the [FCamara backend challenge](https://github.co
 - ASP.NET Core Web API
 - Minimal API
 - Entity Framework Core
+- Microsoft Identity
+- Microsoft AspNetCore Authentication JwtBearer
 - Carter
 - Fluent Validation
 - Swagger 
 - PostgreSQL
 - Docker
 
-#### Last update: 05/22/2024
+#### Last update: 05/24/2024
