@@ -12,6 +12,12 @@ public class EstablishmentEndpoint : ICarterModule
         group.MapPost(string.Empty, CreateEstablishment);
         group.MapPut(string.Empty, UpdateEstablishment);
         group.MapDelete("/{id:guid}", DeleteEstablishment);
+        group.MapGet("/hellolambda", HelloLambda);
+    }
+
+    public static async Task<IResult> HelloLambda()
+    {
+        return Results.Ok("Hello Lambda");
     }
 
     [Authorize]
