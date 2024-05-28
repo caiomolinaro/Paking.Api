@@ -73,7 +73,8 @@ public class AuthenticationEndpoint(IConfiguration configuration) : ICarterModul
             issuer: configuration["Jwt:Issuer"],
             audience: configuration["Jwt:Audience"],
             claims: claims,
-            signingCredentials: credentials
+            signingCredentials: credentials,
+            expires: expiration
             );
 
         return new UserToken()

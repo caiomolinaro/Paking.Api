@@ -1,5 +1,6 @@
 ﻿using Api.Features.Authentication;
 using Api.Features.Establishment;
+using Api.Features.Report;
 using Api.Features.Vehicle;
 using Api.Infrastructure;
 
@@ -12,6 +13,7 @@ public static class DependencyInjection
         services.AddScoped<IEstablishmentData, EstablishmentData>();
         services.AddScoped<IVehicleData, VehicleData>();
         services.AddScoped<IAuthenticationData, AuthenticationData>();
+        services.AddScoped<IReportData, ReportData>();
 
         services.AddDbContext<ParkingDbContext>(options =>
             options.UseNpgsql(configuration.GetConnectionString("Postgres")));
