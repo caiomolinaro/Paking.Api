@@ -12,8 +12,10 @@ This project is my solution to the [FCamara backend challenge](https://github.co
 - Microsoft AspNetCore Authentication JwtBearer
 - Carter
 - Fluent Validation
+- XUnit
+- Bogus
 - Swagger 
 - PostgreSQL
 - Docker
 
-#### Last update: 05/24/2024
+#### Last update: 06/03/2024

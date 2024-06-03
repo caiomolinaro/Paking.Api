@@ -27,14 +27,10 @@ public class EstablishmentValidator : AbstractValidator<EstablishmentEntity>
             .WithMessage("Phone number must be only numbers");
 
         RuleFor(x => x.CarsVacancies)
-            .NotEmpty()
-            .WithMessage("Cars vacancies cannot be empty")
             .GreaterThan(0)
             .WithMessage("Cars vacancies must be a positive number");
 
         RuleFor(x => x.MotorcycleVacancies)
-            .NotEmpty()
-            .WithMessage("Motorcycle vacancies cannot be empty")
             .GreaterThan(0)
             .WithMessage("Motorcycle vacancies must be a positive number");
     }
