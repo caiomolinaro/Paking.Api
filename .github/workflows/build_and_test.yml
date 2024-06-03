@@ -25,8 +25,8 @@ jobs:
       - name: Build
         run: dotnet build --configuration Release
 
-      - name: Install Corvelet Global Tool
+      - name: Install Coverlet Global Tool
         run: dotnet tool install --global coverlet.console
 
       - name: Test and Get Code Coverage
-        run: coverlet ./UnitTests/bin/Debug/net8.0/UnitTests.dll --target "dotnet" --targetargs "test ./UnitTests/UnitTests.csproj --no-build"
+        run: coverlet /UnitTests/bin/Debug/net8.0/UnitTests.dll --target "dotnet" --targetargs "test ./UnitTests/UnitTests.csproj --no-build"
