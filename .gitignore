@@ -329,6 +329,5 @@ ASALocalRun/
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
 coverage.opencover.xml
-/XPInc.Cards.Tests/coverage.opencover.xml
 
 nuget-restore.tar.gz
