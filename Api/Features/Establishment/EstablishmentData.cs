@@ -2,6 +2,7 @@
 
 namespace Api.Features.Establishment;
 
+[ExcludeFromCodeCoverage]
 public class EstablishmentData(ParkingDbContext context) : IEstablishmentData
 {
     public async Task<IEnumerable<EstablishmentEntity>> GetAllEstablishmentAsync(CancellationToken cancellationToken)

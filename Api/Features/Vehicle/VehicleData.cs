@@ -2,6 +2,7 @@
 
 namespace Api.Features.Vehicle;
 
+[ExcludeFromCodeCoverage]
 public class VehicleData(ParkingDbContext context) : IVehicleData
 {
     public async Task<IEnumerable<VehicleEntity>> GetAllVehiclesAsync(CancellationToken cancellationToken)

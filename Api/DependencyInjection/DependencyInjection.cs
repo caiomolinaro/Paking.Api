@@ -6,6 +6,7 @@ using Api.Infrastructure;
 
 namespace Api.DependencyInjection;
 
+[ExcludeFromCodeCoverage]
 public static class DependencyInjection
 {
     public static IServiceCollection AddDependencyInjection(this IServiceCollection services, IConfiguration configuration)

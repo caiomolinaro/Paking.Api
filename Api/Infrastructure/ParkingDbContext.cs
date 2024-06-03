@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace Api.Infrastructure;
 
+[ExcludeFromCodeCoverage]
 public class ParkingDbContext : IdentityDbContext<ApplicationUser>
 {
     public ParkingDbContext(DbContextOptions<ParkingDbContext> options)

@@ -1,5 +1,6 @@
 ﻿namespace Api.Features.Authentication;
 
+[ExcludeFromCodeCoverage]
 public class AuthenticationData : IAuthenticationData
 {
     private readonly UserManager<ApplicationUser> _userManager;

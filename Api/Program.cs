@@ -57,3 +57,10 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.Run();
+
+[ExcludeFromCodeCoverage]
+public partial class Program
+{
+    protected Program()
+    { }
+}
