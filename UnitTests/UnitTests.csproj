@@ -32,8 +32,4 @@
     <ProjectReference Include="..\Api\Api.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Features\Vehicle\" />
-  </ItemGroup>
-
 </Project>
