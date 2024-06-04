@@ -15,7 +15,7 @@ This project is my solution to the [FCamara backend challenge](https://github.co
 - Fluent Assertions
 - XUnit
 - Bogus
-- Swagger 
+- Swagger
 - PostgreSQL
 - Docker
 
