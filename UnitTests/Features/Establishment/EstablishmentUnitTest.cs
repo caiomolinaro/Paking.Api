@@ -24,10 +24,10 @@ public class EstablishmentUnitTest
         .RuleFor(property => property.CarsVacancies, setter => setter.Random.Number(1, 100))
         .RuleFor(property => property.MotorcycleVacancies, setter => setter.Random.Number(1, 100));
 
-        var establishment = faker.Generate();
+        var establishmentEntity = faker.Generate();
 
         //Act
-        var result = _validator.TestValidate(establishment);
+        var result = _validator.TestValidate(establishmentEntity);
 
         //Result
         result.ShouldNotHaveAnyValidationErrors();
@@ -46,10 +46,10 @@ public class EstablishmentUnitTest
         .RuleFor(property => property.CarsVacancies, setter => setter.Random.Number(1, 100))
         .RuleFor(property => property.MotorcycleVacancies, setter => setter.Random.Number(1, 100));
 
-        var establishment = faker.Generate();
+        var establishmentEntity = faker.Generate();
 
         //Act
-        var result = _validator.TestValidate(establishment);
+        var result = _validator.TestValidate(establishmentEntity);
 
         //Result
         result.ShouldHaveValidationErrorFor(property => property.Name);
@@ -68,10 +68,10 @@ public class EstablishmentUnitTest
         .RuleFor(property => property.CarsVacancies, setter => setter.Random.Number(1, 100))
         .RuleFor(property => property.MotorcycleVacancies, setter => setter.Random.Number(1, 100));
 
-        var establishment = faker.Generate();
+        var establishmentEntity = faker.Generate();
 
         //Act
-        var result = _validator.TestValidate(establishment);
+        var result = _validator.TestValidate(establishmentEntity);
 
         //Result
         result.ShouldHaveValidationErrorFor(property => property.CNPJ);
@@ -90,10 +90,10 @@ public class EstablishmentUnitTest
         .RuleFor(property => property.CarsVacancies, setter => setter.Random.Number(1, 100))
         .RuleFor(property => property.MotorcycleVacancies, setter => setter.Random.Number(1, 100));
 
-        var establishment = faker.Generate();
+        var establishmentEntity = faker.Generate();
 
         //Act
-        var result = _validator.TestValidate(establishment);
+        var result = _validator.TestValidate(establishmentEntity);
 
         //Result
         result.ShouldHaveValidationErrorFor(property => property.CNPJ);
@@ -112,10 +112,10 @@ public class EstablishmentUnitTest
         .RuleFor(property => property.CarsVacancies, setter => setter.Random.Number(1, 100))
         .RuleFor(property => property.MotorcycleVacancies, setter => setter.Random.Number(1, 100));
 
-        var establishment = faker.Generate();
+        var establishmentEntity = faker.Generate();
 
         //Act
-        var result = _validator.TestValidate(establishment);
+        var result = _validator.TestValidate(establishmentEntity);
 
         //Result
         result.ShouldHaveValidationErrorFor(property => property.Address);
@@ -134,10 +134,10 @@ public class EstablishmentUnitTest
         .RuleFor(property => property.CarsVacancies, setter => setter.Random.Number(1, 100))
         .RuleFor(property => property.MotorcycleVacancies, setter => setter.Random.Number(1, 100));
 
-        var establishment = faker.Generate();
+        var establishmentEntity = faker.Generate();
 
         //Act
-        var result = _validator.TestValidate(establishment);
+        var result = _validator.TestValidate(establishmentEntity);
 
         //Result
         result.ShouldHaveValidationErrorFor(property => property.PhoneNumber);
@@ -156,10 +156,10 @@ public class EstablishmentUnitTest
         .RuleFor(property => property.CarsVacancies, setter => setter.Random.Number(1, 100))
         .RuleFor(property => property.MotorcycleVacancies, setter => setter.Random.Number(1, 100));
 
-        var establishment = faker.Generate();
+        var establishmentEntity = faker.Generate();
 
         //Act
-        var result = _validator.TestValidate(establishment);
+        var result = _validator.TestValidate(establishmentEntity);
 
         //Result
         result.ShouldHaveValidationErrorFor(property => property.PhoneNumber);
@@ -178,10 +178,10 @@ public class EstablishmentUnitTest
         .RuleFor(property => property.CarsVacancies, setter => setter.Random.Number(1, 100))
         .RuleFor(property => property.MotorcycleVacancies, setter => setter.Random.Number(1, 100));
 
-        var establishment = faker.Generate();
+        var establishmentEntity = faker.Generate();
 
         //Act
-        var result = _validator.TestValidate(establishment);
+        var result = _validator.TestValidate(establishmentEntity);
 
         //Result
         result.ShouldHaveValidationErrorFor(property => property.PhoneNumber);
@@ -200,9 +200,9 @@ public class EstablishmentUnitTest
         .RuleFor(property => property.CarsVacancies, setter => setter.Random.Number(-1, -1))
         .RuleFor(property => property.MotorcycleVacancies, setter => setter.Random.Number(1, 100));
 
-        var establishment = faker.Generate();
+        var establishmentEntity = faker.Generate();
         //Act
-        var result = _validator.TestValidate(establishment);
+        var result = _validator.TestValidate(establishmentEntity);
 
         //Result
         result.ShouldHaveValidationErrorFor(property => property.CarsVacancies);
@@ -213,7 +213,7 @@ public class EstablishmentUnitTest
     {
         //Arrange
         var faker = new Faker<EstablishmentEntity>()
-       .RuleFor(property => property.Id, setter => Guid.NewGuid())
+        .RuleFor(property => property.Id, setter => Guid.NewGuid())
         .RuleFor(property => property.Name, setter => setter.Company.Random.ToString())
         .RuleFor(property => property.CNPJ, setter => setter.Random.ReplaceNumbers("##############"))
         .RuleFor(property => property.Address, setter => setter.Address.Random.ToString())
@@ -221,10 +221,10 @@ public class EstablishmentUnitTest
         .RuleFor(property => property.CarsVacancies, setter => setter.Random.Number(1, 100))
         .RuleFor(property => property.MotorcycleVacancies, setter => setter.Random.Number(-1, -1));
 
-        var establishment = faker.Generate();
+        var establishmentEntity = faker.Generate();
 
         //Act
-        var result = _validator.TestValidate(establishment);
+        var result = _validator.TestValidate(establishmentEntity);
 
         //Result
         result.ShouldHaveValidationErrorFor(property => property.MotorcycleVacancies);
