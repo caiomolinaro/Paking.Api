@@ -1,5 +1,6 @@
 ﻿namespace Api.Features.Vehicle;
 
+[ExcludeFromCodeCoverage]
 public class VehicleEndpoint : ICarterModule
 {
     public void AddRoutes(IEndpointRouteBuilder app)
