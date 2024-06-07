@@ -1,5 +1,6 @@
 ﻿namespace Api.Features.Report;
 
+[ExcludeFromCodeCoverage]
 public class ReportEndpoint : ICarterModule
 {
     public void AddRoutes(IEndpointRouteBuilder app)

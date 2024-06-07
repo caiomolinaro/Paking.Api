@@ -1,5 +1,6 @@
 ﻿namespace Api.Features.Establishment;
 
+[ExcludeFromCodeCoverage]
 public class EstablishmentEndpoint : ICarterModule
 {
     public void AddRoutes(IEndpointRouteBuilder app)

@@ -1,5 +1,6 @@
 ﻿namespace Api.Features.HealthCheck;
 
+[ExcludeFromCodeCoverage]
 public class HealthCheckEndpoint : ICarterModule
 {
     public void AddRoutes(IEndpointRouteBuilder app)

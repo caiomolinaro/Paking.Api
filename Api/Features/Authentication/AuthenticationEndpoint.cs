@@ -1,5 +1,6 @@
 ﻿namespace Api.Features.Authentication;
 
+[ExcludeFromCodeCoverage]
 public class AuthenticationEndpoint(IConfiguration configuration) : ICarterModule
 {
     public void AddRoutes(IEndpointRouteBuilder app)
