@@ -72,7 +72,7 @@ public class AuthenticationEndpoint(IConfiguration configuration) : ICarterModul
             new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
         };
 
-        var privateKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:SecretKey"]));
+        var privateKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Environment.GetEnvironmentVariable("JWT_SECRET_KEY")));
 
         var credentials = new SigningCredentials(privateKey, SecurityAlgorithms.HmacSha256);
 
