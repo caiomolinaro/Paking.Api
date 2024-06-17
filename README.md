@@ -18,3 +18,5 @@ This project is my solution to the [FCamara backend challenge](https://github.co
 - Swagger
 - PostgreSQL
 - Docker
+
+[Deploy link](https://tyuwm5vfbx2biouzjohommhxcu0ldsgp.lambda-url.us-east-1.on.aws/swagger/index.html) into AWS Lambda using Amazon RDS
