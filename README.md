@@ -18,5 +18,3 @@ This project is my solution to the [FCamara backend challenge](https://github.co
 - Swagger
 - PostgreSQL
 - Docker
-
-#### Last update: 06/04/2024

@@ -1,4 +1,5 @@
 using Api.DependencyInjection;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,7 +19,7 @@ c =>
         Scheme = "Bearer",
         BearerFormat = "JWT",
         In = ParameterLocation.Header,
-        Description = "Description"
+        Description = "Copie 'Bearer ' + token'",
     });
 
     c.AddSecurityRequirement(new OpenApiSecurityRequirement
@@ -35,6 +36,10 @@ c =>
                     new string[] {}
                 }
             });
+
+    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+    c.IncludeXmlComments(xmlPath);
 }
 );
 builder.Services.AddDependencyInjection(builder.Configuration);

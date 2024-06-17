@@ -15,6 +15,10 @@ public class VehicleEndpoint : ICarterModule
         group.MapDelete("/{id:guid}", DeleteVehicle);
     }
 
+    /// <summary>
+    /// Returns all vehicles
+    /// </summary>
+
     [Authorize]
     public static async Task<IResult> GetAllVehicles(IVehicleData vehicleData, CancellationToken cancellationToken)
     {
@@ -26,6 +30,10 @@ public class VehicleEndpoint : ICarterModule
 
         return Results.Ok(vehicles);
     }
+
+    /// <summary>
+    /// Returns a vehicle by id
+    /// </summary>
 
     [Authorize]
     public static async Task<IResult> GetVehicleById([FromRoute] Guid id, IVehicleData vehicleData, CancellationToken cancellationToken)
@@ -39,6 +47,10 @@ public class VehicleEndpoint : ICarterModule
 
         return Results.Ok(vehicleById);
     }
+
+    /// <summary>
+    /// Create a new vehicle
+    /// </summary>
 
     [Authorize]
     public static async Task<IResult> CreateVehicle(IVehicleData vehicleData, VehicleEntity vehicleEntity, IValidator<VehicleEntity> validator, CancellationToken cancellationToken)
@@ -54,6 +66,10 @@ public class VehicleEndpoint : ICarterModule
 
         return Results.Created($"/vehicles/{vehicleEntity.Id}", vehicleEntity);
     }
+
+    /// <summary>
+    /// Update an existing vehicle
+    /// </summary>
 
     [Authorize]
     public static async Task<IResult> UpdateVehicle(IVehicleData vehicleData, VehicleEntity vehicleEntity, IValidator<VehicleEntity> validator, CancellationToken cancellationToken)
@@ -74,6 +90,10 @@ public class VehicleEndpoint : ICarterModule
 
         return Results.Ok(vehicleEntity);
     }
+
+    /// <summary>
+    /// Delete an vehicle
+    /// </summary>
 
     [Authorize]
     public static async Task<IResult> DeleteVehicle([FromRoute] Guid id, IVehicleData vehicleData, CancellationToken cancellationToken)

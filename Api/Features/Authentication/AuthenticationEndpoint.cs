@@ -12,6 +12,10 @@ public class AuthenticationEndpoint(IConfiguration configuration) : ICarterModul
         group.MapPost("/login", Login);
     }
 
+    /// <summary>
+    /// Register a user
+    /// </summary>
+
     public async Task<IResult> Register(IAuthenticationData authenticationData, RegisterEntity registerEntity, IValidator<RegisterEntity> validator)
     {
         var validationResult = await validator.ValidateAsync(registerEntity);
@@ -32,6 +36,10 @@ public class AuthenticationEndpoint(IConfiguration configuration) : ICarterModul
             return Results.BadRequest();
         }
     }
+
+    /// <summary>
+    /// User login
+    /// </summary>
 
     public async Task<IResult> Login(IAuthenticationData authenticationData, LoginEntity loginEntity, IValidator<LoginEntity> validator)
     {

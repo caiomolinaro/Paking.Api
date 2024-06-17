@@ -11,6 +11,10 @@ public class ReportEndpoint : ICarterModule
         group.MapGet(string.Empty, GetReport);
     }
 
+    /// <summary>
+    /// Returns a report of the total number of registered establishments and vehicles
+    /// </summary>
+
     [Authorize]
     public static async Task<IResult> GetReport(IReportData reportData, CancellationToken cancellationToken)
     {

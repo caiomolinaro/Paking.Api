@@ -11,6 +11,10 @@ public class HealthCheckEndpoint : ICarterModule
         group.MapGet(string.Empty, GetHealthCheck);
     }
 
+    /// <summary>
+    /// API Status
+    /// </summary>
+
     public static IResult GetHealthCheck()
     {
         string healthCheck = "Ok";
