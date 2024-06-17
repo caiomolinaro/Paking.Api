@@ -1,3 +1,4 @@
 ﻿global using Bogus;
-global using FluentValidation.TestHelper;
 global using FluentAssertions;
+
+global using FluentValidation.TestHelper;

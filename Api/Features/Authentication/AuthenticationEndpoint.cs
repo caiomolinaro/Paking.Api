@@ -79,12 +79,12 @@ public class AuthenticationEndpoint(IConfiguration configuration) : ICarterModul
         var expiration = DateTime.UtcNow.AddMinutes(60);
 
         JwtSecurityToken token = new JwtSecurityToken(
-            issuer: configuration["Jwt:Issuer"],
-            audience: configuration["Jwt:Audience"],
+            issuer: Environment.GetEnvironmentVariable("JWT_ISSUER"),
+            audience: Environment.GetEnvironmentVariable("JWT_AUDIENCE"),
             claims: claims,
             signingCredentials: credentials,
             expires: expiration
-            );
+        );
 
         return new UserToken()
         {

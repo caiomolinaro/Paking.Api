@@ -1,5 +1,4 @@
 ﻿using Api.Features.Authentication;
-using FluentValidation.TestHelper;
 
 namespace UnitTests.Features.Authentication;
 

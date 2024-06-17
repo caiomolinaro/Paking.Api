@@ -12,6 +12,5 @@
   "function-runtime": "dotnet8",
   "function-architecture": "x86_64",
   "tracing-mode": "PassThrough",
-  "environment-variables": "\"ASPNETCORE_ENVIRONMENT\"=\"Development\"",
   "function-url-enable": true
 }
