@@ -15,6 +15,10 @@ public class EstablishmentEndpoint : ICarterModule
         group.MapDelete("/{id:guid}", DeleteEstablishment);
     }
 
+    /// <summary>
+    /// Returns all establishments
+    /// </summary>
+
     [Authorize]
     public static async Task<IResult> GetAllEstablishments(IEstablishmentData establishmentData, CancellationToken cancellationToken)
     {
@@ -26,6 +30,10 @@ public class EstablishmentEndpoint : ICarterModule
 
         return Results.Ok(establishments);
     }
+
+    /// <summary>
+    /// Returns a establishment by id
+    /// </summary>
 
     [Authorize]
     public static async Task<IResult> GetEstablishmentById([FromRoute] Guid id, IEstablishmentData establishmentData, CancellationToken cancellationToken)
@@ -39,6 +47,10 @@ public class EstablishmentEndpoint : ICarterModule
 
         return Results.Ok(establishmentById);
     }
+
+    /// <summary>
+    /// Create a new establishment
+    /// </summary>
 
     [Authorize]
     public static async Task<IResult> CreateEstablishment(IEstablishmentData establishmentData, IValidator<EstablishmentEntity> validator, EstablishmentEntity establishmentEntity, CancellationToken cancellationToken)
@@ -54,6 +66,10 @@ public class EstablishmentEndpoint : ICarterModule
 
         return Results.Created($"/establishments/{establishmentEntity.Id}", establishmentEntity);
     }
+
+    /// <summary>
+    /// Update an existing establishment
+    /// </summary>
 
     [Authorize]
     public static async Task<IResult> UpdateEstablishment(IEstablishmentData establishmentData, EstablishmentEntity establishmentEntity, IValidator<EstablishmentEntity> validator, CancellationToken cancellationToken)
@@ -74,6 +90,10 @@ public class EstablishmentEndpoint : ICarterModule
 
         return Results.Ok(establishmentEntity);
     }
+
+    /// <summary>
+    /// Delete an establishment
+    /// </summary>
 
     [Authorize]
     public static async Task<IResult> DeleteEstablishment([FromRoute] Guid id, IEstablishmentData establishmentData, CancellationToken cancellationToken)

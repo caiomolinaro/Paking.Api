@@ -1,0 +1,17 @@
+{
+  "region": "",
+  "profile": "",
+  "configuration": "Release",
+  "framework": "net8.0",
+  "function-name": "Parking-Api",
+  "function-description": "",
+  "package-type": "Zip",
+  "function-handler": "Parking.Api",
+  "function-memory-size": 256,
+  "function-timeout": 30,
+  "function-runtime": "dotnet8",
+  "function-architecture": "x86_64",
+  "tracing-mode": "PassThrough",
+  "environment-variables": "\"ASPNETCORE_ENVIRONMENT\"=\"Development\"",
+  "function-url-enable": true
+}
