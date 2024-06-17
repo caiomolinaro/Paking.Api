@@ -72,19 +72,19 @@ public class AuthenticationEndpoint(IConfiguration configuration) : ICarterModul
             new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
         };
 
-        var privateKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:SecretKey"]));
+        var privateKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Environment.GetEnvironmentVariable("JWT_SECRET_KEY")));
 
         var credentials = new SigningCredentials(privateKey, SecurityAlgorithms.HmacSha256);
 
         var expiration = DateTime.UtcNow.AddMinutes(60);
 
         JwtSecurityToken token = new JwtSecurityToken(
-            issuer: configuration["Jwt:Issuer"],
-            audience: configuration["Jwt:Audience"],
+            issuer: Environment.GetEnvironmentVariable("JWT_ISSUER"),
+            audience: Environment.GetEnvironmentVariable("JWT_AUDIENCE"),
             claims: claims,
             signingCredentials: credentials,
             expires: expiration
-            );
+        );
 
         return new UserToken()
         {

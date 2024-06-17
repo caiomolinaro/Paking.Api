@@ -17,7 +17,7 @@ public static class DependencyInjection
         services.AddScoped<IReportData, ReportData>();
 
         services.AddDbContext<ParkingDbContext>(options =>
-            options.UseNpgsql(configuration.GetConnectionString("Postgres")));
+            options.UseNpgsql(Environment.GetEnvironmentVariable("MY_DB_CONNECTION_STRING")));
 
         services.AddIdentity<ApplicationUser, IdentityRole>()
            .AddEntityFrameworkStores<ParkingDbContext>()
@@ -37,9 +37,9 @@ public static class DependencyInjection
                 ValidateLifetime = true,
                 ValidateIssuerSigningKey = true,
 
-                ValidIssuer = configuration["Jwt:Issuer"],
-                ValidAudience = configuration["Jwt:Audience"],
-                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:SecretKey"])),
+                ValidIssuer = Environment.GetEnvironmentVariable("JWT_ISSUER"),
+                ValidAudience = Environment.GetEnvironmentVariable("JWT_AUDIENCE"),
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Environment.GetEnvironmentVariable("JWT_SECRET_KEY"))),
 
                 ClockSkew = TimeSpan.Zero
             };
